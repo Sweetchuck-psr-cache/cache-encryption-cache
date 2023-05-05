@@ -1,0 +1,11 @@
+/.cache/
+
+/reports/
+/tmp/
+
+/vendor/
+/composer.lock
+
+/phpcs.xml
+
+/phpunit.xml

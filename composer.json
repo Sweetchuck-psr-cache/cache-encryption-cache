@@ -1,0 +1,96 @@
+{
+    "name": "cache/encryption-cache",
+    "description": "Adds encryption support to your PSR-6 cache implementation",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "cache",
+        "psr6",
+        "encrypted",
+        "encryption"
+    ],
+    "authors": [
+        {
+            "name": "Aaron Scherer",
+            "email": "aequasi@gmail.com",
+            "homepage": "https://github.com/aequasi"
+        },
+        {
+            "name": "Tobias Nyholm",
+            "email": "tobias.nyholm@gmail.com",
+            "homepage": "https://github.com/nyholm"
+        },
+        {
+            "name": "Daniel Bannert",
+            "email": "d.bannert@anolilab.de",
+            "homepage": "https://github.com/prisis"
+        }
+    ],
+    "homepage": "https://www.php-cache.com/en/latest/",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "repositories": {
+        "cache/adapter-common": {
+            "type": "github",
+            "url": "https://github.com/Sweetchuck-psr-cache/cache-adapter-common.git"
+        },
+        "cache/filesystem-adapter": {
+            "type": "github",
+            "url": "https://github.com/Sweetchuck-psr-cache/cache-filesystem-adapter.git"
+        },
+        "cache/integration-tests": {
+            "type": "github",
+            "url": "https://github.com/Sweetchuck-psr-cache/cache-integration-tests.git"
+        },
+        "cache/tag-interop": {
+            "type": "github",
+            "url": "https://github.com/Sweetchuck-psr-cache/cache-tag-interop.git"
+        },
+        "tedivm/stash": {
+            "type": "github",
+            "url": "https://github.com/Sweetchuck/tedivm-stash.git"
+        }
+    },
+    "require": {
+        "php": ">=8.1",
+        "cache/adapter-common": "3.x-dev",
+        "cache/tag-interop": "3.x-dev",
+        "defuse/php-encryption": "^2.0",
+        "psr/cache": "^3.0"
+    },
+    "require-dev": {
+        "cache/filesystem-adapter": "3.x-dev",
+        "cache/integration-tests": "3.x-dev",
+        "phpunit/phpunit": "^10.0",
+        "squizlabs/php_codesniffer": "^3.7",
+        "symfony/filesystem": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cache\\Encryption\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cache\\Encryption\\Tests\\": "tests/src/"
+        }
+    },
+    "scripts": {
+        "lint": [
+            "@lint:phpcs"
+        ],
+        "lint:phpcs": "phpcs",
+        "test:all": "phpunit",
+        "test": [
+            "@test:acceptance"
+        ],
+        "test:acceptance": "phpunit --testsuite='Acceptance'"
+    }
+}

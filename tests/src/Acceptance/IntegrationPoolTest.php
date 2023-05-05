@@ -12,7 +12,7 @@ declare(strict_types = 1);
  * with this source code in the file LICENSE.
  */
 
-namespace Cache\Encryption\Tests;
+namespace Cache\Encryption\Tests\Acceptance;
 
 use Cache\Adapter\Common\CacheItem;
 use Cache\Adapter\Common\Exception\InvalidArgumentException;
@@ -78,10 +78,16 @@ class IntegrationPoolTest extends CachePoolTest
     private function getFilesystem(): Filesystem
     {
         if ($this->filesystem === null) {
-            $this->filesystem = new Filesystem(new Local(__DIR__.'/../tmp/'.rand(1, 100000)));
+            $root = static::getSelfRoot();
+            $this->filesystem = new Filesystem(new Local("$root/tmp/".rand(1, 100000)));
         }
 
         return $this->filesystem;
+    }
+
+    protected static function getSelfRoot(): string
+    {
+        return dirname(__DIR__, 3);
     }
 
     /**
@@ -91,7 +97,8 @@ class IntegrationPoolTest extends CachePoolTest
     {
         parent::tearDownAfterClass();
 
+        $root = static::getSelfRoot();
         $fs = new \Symfony\Component\Filesystem\Filesystem();
-        $fs->remove([__DIR__ . '/../tmp/']);
+        $fs->remove(["$root/tmp/"]);
     }
 }
